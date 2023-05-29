@@ -1,3 +1,5 @@
+.gitingnore
+
 .vscode
 bin
 publish
