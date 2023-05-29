@@ -1,7 +1,0 @@
-.gitignore
-
-.vscode
-bin
-publish
-obj/Debug
-obj/Release
