@@ -1,16 +1,18 @@
 
 # WebCommander
 
-This or `WebCommander.exe` is a client side application, that will execute pre stored queries as triggered by the master (comming soon).
+This or `WebCommander.exe` is a client side application, that will execute pre stored queries as triggered by the master (coming soon).
 
-Request will triggered from the websocket server. Which is in developent, https://github.com/ABugNamedBeetle/SimpleWebSocketJS
+Request will triggered from the websocket server. Which is in development, https://github.com/ABugNamedBeetle/SimpleWebSocketJS
 
 
 ## Tech Stack
 
-**Client:** C#
+**Client:** C# (compiled to native using bflat)
 
-**Server:** Node, Express (hosted on glich.me)
+**Server:** Node, Express (hosted on glitch.me)
+
+**IDE:** Im only using VS Code with C# extension (VS can also be used, in AOT also ).
 
 
 ## Demo
@@ -20,7 +22,7 @@ https://github.com/ABugNamedBeetle/WebCommander/assets/62416701/22d668a3-8a9e-40
 
 - only basic text are being sent sent from server to client 🤣.
 
-- JSON support in both `client` and `server` is still in developent, like a 🔥.
+- JSON support in both `client` and `server` is still in development, like a 🔥.
 
 - security for now is not my major concern for now 🤔.
 
