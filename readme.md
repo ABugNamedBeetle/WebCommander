@@ -14,9 +14,7 @@ Request will triggered from the websocket server. Which is in developent, https:
 
 
 ## Demo
-
-![Alt Text](demo/sample.mp4)
-
+https://github.com/ABugNamedBeetle/WebCommander/assets/62416701/22d668a3-8a9e-4076-88dc-f2c6e4621cb3
 
 ## Roadmap
 
