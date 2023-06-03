@@ -18,6 +18,32 @@ Request will triggered from the websocket server. Which is in development, https
 ## Demo
 https://github.com/ABugNamedBeetle/WebCommander/assets/62416701/22d668a3-8a9e-4076-88dc-f2c6e4621cb3
 
+
+## Build
+- To build using `bflat` in VS code, `bb.ps1` is given, add the following in in tasks.json,  and execute the task. 
+    
+    ```json
+       
+        {
+            "label": "Build Bfalt",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "./bb.ps1",
+                "-Folder",         "App",
+                "-OutputName", "WebCommander.exe"
+                
+            ],
+             "problemMatcher": "$msCompile",
+        }
+    ```
+    or, can be build using
+    ```shell
+    ./bb.ps1 -Folder "App" -OutputName "WebCommander.exe"
+    ```
+    
+- To build using VS, you know the drill 😎
+
 ## Roadmap
 
 - only basic text are being sent sent from server to client 🤣.
