@@ -1,9 +1,11 @@
-namespace WebCommander.App
-{
+using System;
+using WebCommander.App.Controller;
+namespace WebCommander.App;
+
     class Data
     {
         private string str;
-
+        private SimplerController sc = new SimplerController("trie");
         public Data(string str)
         {
             this.str = str;
@@ -22,4 +24,4 @@ namespace WebCommander.App
             return HashCode.Combine(str);
         }
     }
-}
+
