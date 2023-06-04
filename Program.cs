@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.IO;
 using System.Net.WebSockets;
 using System.Text;
+
 using System.Threading;
 using System.Threading.Tasks;
 using WebCommander.App;
@@ -20,26 +22,29 @@ namespace WebCommander
         private static bool isLastHealthSent = false;
 
         // private const string url="wss://simple-web-socket-abnb.onrender.com/desktop";
-        private const string url = "wss://simple-web-socket-abnb.glitch.me/desktop";
+        
         // private const string url = "ws://localhost:5000/desktop";
         private static readonly TimeSpan delay = TimeSpan.FromMilliseconds(1000);
         private static ClientWebSocket? webSocket = null;
+        private static Data? init = null;
 
         static void Main(string[] args)
         {
             // Console.Title += "[HELLO]";
-            Data d = new Data("WebSocket Commander : " + url);
-            Console.WriteLine(d.Str);
+            Console.WriteLine(Path.GetFullPath("init.json"));
+            
+            Data init = Data.getDataFromJSON(Path.GetFullPath("init.json"));
+           //Console.WriteLine(init);
+            
             Thread.Sleep(1000);
             while (true)
             {
 
-                Connect(url).Wait();
+                Connect(init.Websocket!).Wait();
                 Thread.Sleep(5000);
             }
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
-
+           
+          
 
 
         }
@@ -56,7 +61,9 @@ namespace WebCommander
                 webSocket.Options.SetRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36");
                 webSocket.Options.SetRequestHeader("Connection", "Upgrade");
 
+                Console.WriteLine("WebSocket Commander : " + uri);
                 Console.ForegroundColor = ConsoleColor.White;
+                
                 Console.Write($"{DateTime.Now.ToShortTimeString()} - Initiating the connection to Websocket: ");
                 Console.ResetColor();
                 await webSocket.ConnectAsync(new Uri(uri), CancellationToken.None);

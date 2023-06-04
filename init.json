@@ -1,0 +1,15 @@
+{
+    "websocket": "wss://simple-web-socket-abnb.glitch.me/desktop22",
+    "queries":[
+        {
+            "label":"run_start",
+            "command":"do something"
+        },
+        {
+            "label":"run_start2",
+            "command":"do something"
+        }
+    
+    
+    ]
+}
