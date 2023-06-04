@@ -23,8 +23,7 @@ https://github.com/ABugNamedBeetle/WebCommander/assets/62416701/22d668a3-8a9e-40
 - To build using `bflat` in VS code, `bb.ps1` is given, add the following in in tasks.json,  and execute the task. 
     
     ```json
-       
-        {
+       {
             "label": "Build Bfalt",
             "type": "shell",
             "command": "powershell",
