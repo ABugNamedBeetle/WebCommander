@@ -49,7 +49,7 @@ https://github.com/ABugNamedBeetle/WebCommander/assets/62416701/22d668a3-8a9e-40
 
 - JSON support in both `client` and `server` is still in development, like a 🔥.
 
-- security for now is not my major concern for now 🤔.
+- for now `security` is not my major concern🤔.
 
 ## Contributing
 
