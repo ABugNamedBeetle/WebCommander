@@ -13,8 +13,10 @@ public class Data
     private string? websocket;
     private List<Query> queries = new List<Query>();
 
+    [JsonPropertyName("websocket") ]
     public string Websocket { get => websocket ?? string.Empty; set => websocket = value; }
 
+    [JsonPropertyName("queries")]
     public List<Query> Queries { get => queries; set => queries = value; }
 
     public static Data getDataFromJSON(string fileName)
@@ -25,10 +27,10 @@ public class Data
 
             //doing a manual deser due to 
             /*
-            warning IL2026: Using member 'System.Text.Json.JsonSerialize r.Deserialize<TValue>(String, JsonSerializerOptions)' which has 'RequiresUnreferencedCodeAttribute' can break functionality when  
-            trimming application code. JSON serialization and deserialization might require types that cannot be statically analyzed. Use the 
-            overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved. [D:\Arpit Sha 
-            rma\Downloads\ApritProj\WebCommander\WebCommander.csproj]
+                warning IL2026: Using member 'System.Text.Json.JsonSerialize r.Deserialize<TValue>(String, JsonSerializerOptions)' which has 'RequiresUnreferencedCodeAttribute' can break functionality when  
+                trimming application code. JSON serialization and deserialization might require types that cannot be statically analyzed. Use the 
+                overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved. [D:\Arpit Sha 
+                rma\Downloads\ApritProj\WebCommander\WebCommander.csproj]
             */
             // using FileStream openStream = File.OpenRead(fileName);
             // Data? data = await JsonSerializer.DeserializeAsync<Data?>(openStream);
@@ -83,7 +85,7 @@ public class Data
 }
 
 
-[JsonSourceGenerationOptions(WriteIndented = true, PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+[JsonSourceGenerationOptions(WriteIndented = true)] // , PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase
 [JsonSerializable(typeof(Data))]
 [JsonSerializable(typeof(Query))]
 internal partial class WebCommanderGenerationContext : JsonSerializerContext

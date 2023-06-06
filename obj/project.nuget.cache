@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hUy8+2vl2uEEx9/9pncqVQnVvTxIJlz3eevoy6f+qUqtLQISC6cITY28GvyqWJujwv7wuyPpYeHPdm/7MD8wog==",
+  "dgSpecHash": "XauGkJu8ZGUG7bUT0MtpHCzWgCLDIktmyjtvpZRLJRP+D57v2hvVY+xTrzs+bRI8eEfnmQyp9YYsWxiCP8zk0A==",
   "success": true,
   "projectFilePath": "D:\\Arpit Sharma\\Downloads\\ApritProj\\WebCommander\\WebCommander.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Arpit Sharma\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\7.0.5\\microsoft.netcore.app.runtime.win-x64.7.0.5.nupkg.sha512",
-    "C:\\Users\\Arpit Sharma\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\7.0.5\\microsoft.windowsdesktop.app.runtime.win-x64.7.0.5.nupkg.sha512",
-    "C:\\Users\\Arpit Sharma\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.5\\microsoft.aspnetcore.app.runtime.win-x64.7.0.5.nupkg.sha512",
-    "C:\\Users\\Arpit Sharma\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\7.0.5\\microsoft.netcore.app.crossgen2.win-x64.7.0.5.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }
