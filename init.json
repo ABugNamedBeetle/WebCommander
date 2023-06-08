@@ -1,5 +1,6 @@
 {
-    "websocket": "wss://simple-web-socket-abnb.glitch.me/desktop22",
+    "websocket": "wss://simple-web-socket-abnb.glitch.me/desktop",
+    "healthTimeout":2,
     "queries":[
         {
             "label":"run_start",

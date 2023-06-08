@@ -10,7 +10,8 @@ namespace WebCommander.App;
 
 public class Data
 {
-    private string? websocket;
+    private string websocket = String.Empty;
+    private int healthTimeout;
     private List<Query> queries = new List<Query>();
 
     [JsonPropertyName("websocket") ]
@@ -18,6 +19,9 @@ public class Data
 
     [JsonPropertyName("queries")]
     public List<Query> Queries { get => queries; set => queries = value; }
+    
+    [JsonPropertyName("healthTimeout")]
+    public int HealthTimeout { get => healthTimeout; set => healthTimeout = value; }
 
     public static Data getDataFromJSON(string fileName)
     {
@@ -80,7 +84,7 @@ public class Data
     {
         string queryValues = string.Join(", ", Queries.Select(query => query.ToString()));
 
-        return string.Format("Data:[ Websocket=\"{0}\", Queries={1} ]", Websocket, queryValues);
+        return string.Format("Data:[ Websocket=\"{0}\"\n, Queries={1}\n, HealthTimeout={2} ]", Websocket, queryValues, HealthTimeout);
     }
 }
 
