@@ -3,7 +3,12 @@
 
 This or `WebCommander.exe` is a client side application, that will execute pre stored queries as triggered by the master (coming soon).
 
-Request will triggered from the websocket server. Which is in development, https://github.com/ABugNamedBeetle/SimpleWebSocketJS
+The request will be triggered from the WebMasterUI through the WebSocket server. Both of which are in development, 
+
+**WebMasterUI:**
+https://github.com/ABugNamedBeetle/WebMasterUI
+**WebSocket Server:**
+https://github.com/ABugNamedBeetle/SimpleWebSocketJS
 
 
 ## Tech Stack
