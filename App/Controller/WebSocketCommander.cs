@@ -11,13 +11,14 @@ namespace WebCommander.App.Controller
         private static Data? init = null;
         private static object consoleLock = new object();
         private const int sendChunkSize = 256;
-        private const int receiveChunkSize = 64;
+        private const int receiveChunkSize = 512;
         private const bool verbose = true;
         private static bool isLastHealthSent = false;
 
         public static async Task Connect(Data initData)
         {
             init = initData;
+            SocketMessageInit.InitSecretKeyHash("password");
 
             try
             {
@@ -40,12 +41,19 @@ namespace WebCommander.App.Controller
                     Console.WriteLine("Connected");
                     Console.ResetColor();
                     Console.WriteLine("Health service started");
-
-                    var t = HealthStatus(webSocket, init.HealthTimeout);
-                    await Task.WhenAll(Receive(webSocket));
+                  
+                    
+                        var t = HealthStatus(webSocket, init.HealthTimeout);
+                    
+                    
+                       Task.WhenAll(Receive(webSocket));
                     if (t.Result == false)
                     {
-                        throw new Exception("Websocked Failed, Health Service Stopped");
+                        // if(t.Exception != null){
+                        //     //Console.WriteLine(t.Exception + "HEERE");
+                        //     //throw new Exception(t.Exception.Message);
+
+                        // }
                     }
 
 
@@ -55,6 +63,7 @@ namespace WebCommander.App.Controller
             catch (Exception ex)
             {
                 Console.WriteLine("[ Connect ] Exception: {0}", ex.Message);
+                Console.WriteLine(ex.StackTrace);
             }
             finally
             {
@@ -135,11 +144,21 @@ namespace WebCommander.App.Controller
                 {
 
                     String msg = Encoding.ASCII.GetString(buffer, 0, length);
-
-
-                    if (msg.Equals("-ok-") && isLastHealthSent)
+                    SocketMessage? resMesg = null;
+                   
+                    try
                     {
-                        ///System.Diagnostics.Process.Start(@"D:\Arpit Sharma\Downloads\Compressed\remote-tools\start SSH webrtc Tunnel 5022.bat");
+                        resMesg = SocketMessage.ReadPacket(msg);
+                        Console.WriteLine(resMesg.Message + "  "+resMesg.Type + " " + SocketMessage.decodeMessage(resMesg.Message));
+                    }
+                    catch (System.Exception e)
+                    {
+                        
+                        Console.WriteLine(e.Message +" \n "+ e.StackTrace);
+                    }
+                    
+                    if (resMesg != null && resMesg.Type.Equals(MessageType.HEALTHRESPONSE) && SocketMessage.decodeMessage(resMesg.Message).Equals("-HEALTH-OK-") && isLastHealthSent)
+                    {
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("<<<< HEALTH OK");
                         isLastHealthSent = false;  //ack the health sent
@@ -152,7 +171,6 @@ namespace WebCommander.App.Controller
 
                         if (msg.Equals("start attack"))
                         {
-                            System.Diagnostics.Process.Start(@"D:\Arpit Sharma\Downloads\Compressed\remote-tools\start VNC webrtc Tunnel 5900.bat");
                             Console.WriteLine("💥");
                         }
                     }
@@ -179,6 +197,7 @@ namespace WebCommander.App.Controller
             {
                 if (isLastHealthSent && (tickCount == 0))
                 { //healt is not ack and tick is 0
+                    Console.WriteLine("Health Not Acknowledged in Required Time");
                     break;
                 }
 
@@ -188,7 +207,20 @@ namespace WebCommander.App.Controller
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine($">>>> Sending Health OK [ {DateTime.Now.ToShortTimeString()} ]");
                     isLastHealthSent = true;
-                    await SendMessage(webSocket, "-ok-").ContinueWith(prev =>
+
+                    SocketMessage healthMessagae = new SocketMessage(MessageType.HEALTH,"server","slaveCommander");
+                    healthMessagae.Message = SocketMessage.encodeMessage("-HEALTH-OK-");
+                    string preparedMessage;
+                    
+                    // try
+                    // {
+                        preparedMessage = healthMessagae.PreparePacket();                 
+                    // }
+                    // catch (System.Exception)
+                    // {
+                    //     throw;
+                    // }
+                    await SendMessage(webSocket, preparedMessage).ContinueWith(prev =>
                     {
 
                         int minutesToAdd = healthTimeout; // Example: add 30 minutes

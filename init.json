@@ -1,5 +1,6 @@
 {
-    "websocket": "wss://simple-web-socket-abnb.glitch.me/desktop",
+    
+    "websocket":"ws://localhost:5000/slaveCommander?channel=my-secret-channel&type=SLAVE",
     "healthTimeout":2,
     "queries":[
         {

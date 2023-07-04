@@ -43,7 +43,7 @@ public class Data
             d = JsonSerializer.Deserialize<Data>(jsonString, WebCommanderGenerationContext.Default.Data)!;
             //@more at 
             //https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/source-generation
-
+            //https://devblogs.microsoft.com/dotnet/try-the-new-system-text-json-source-generator/
 
             //  string json = File.ReadAllText(fileName);
             // JsonDocumentOptions options = new JsonDocumentOptions { AllowTrailingCommas = true };
@@ -60,10 +60,10 @@ public class Data
             throw new Exception("Failed while reading init.json");
         }
 
-        var sourceGenOptions = new JsonSerializerOptions
-        {
-            TypeInfoResolver = WebCommanderGenerationContext.Default
-        };
+        // var sourceGenOptions = new JsonSerializerOptions
+        // {
+        //     TypeInfoResolver = WebCommanderGenerationContext.Default
+        // };
         // string ng = JsonSerializer.Serialize(d!, typeof(Data), sourceGenOptions );
         // Console.WriteLine(ng);
 
@@ -92,6 +92,7 @@ public class Data
 [JsonSourceGenerationOptions(WriteIndented = true)] // , PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase
 [JsonSerializable(typeof(Data))]
 [JsonSerializable(typeof(Query))]
+[JsonSerializable(typeof(SocketMessage))]
 internal partial class WebCommanderGenerationContext : JsonSerializerContext
 {
 }
